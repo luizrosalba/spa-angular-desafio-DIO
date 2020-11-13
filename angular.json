@@ -24,6 +24,7 @@
               "src/assets"
             ],
             "styles": [
+              "src/custom-theme.scss",
               "src/styles.css"
             ],
             "scripts": []
@@ -119,6 +120,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "spa-angular-desafio"
+    }
+  },
+  "defaultProject": "spa-angular-desafio",
+  "cli": {
+    "analytics": "dd336ca2-21ad-4553-b691-412deb4c8c99"
+  }
 }
