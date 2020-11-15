@@ -1,4 +1,33 @@
-# SpaAngularDesafio
+# Desafio de Construção de uma SPA em Angular 
+
+Este projeto é requisito necessário para conclusão do bootcamp Aceleração Global Dev#2 da Digital Innovation One (https://digitalinnovation.one/). 
+
+Nele fomos desafiados a construir uma Single Page Application em Angular 2.
+
+Este projeto usa conceitos de: 
+
+- Angular 2 
+- Angular Material 
+- Construção de Single Page Applications 
+- Criação de componentes usando o AngularCli
+- Data-Binding 
+- Diretivas 
+- EventEmitters 
+- LifeCicleHooks 
+- Observables
+
+Objetivos: 
+
+- Criar no mínimo 3 componentes interagindo na mesma página 
+- 4 componentes de Angular Material 
+- Uma interação usando property binding 
+- Explicação em vídeo postado no youtube : 
+
+# Procedimentos : 
+
+- criei componente Home 
+
+# Documentação do Ng New
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.2.0.
 
