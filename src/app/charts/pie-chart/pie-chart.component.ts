@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { single } from '../data';
+import { single } from '../data-pie';
 
 @Component({
   selector: 'luiz-pie-chart',
