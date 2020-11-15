@@ -1,8 +1,17 @@
 <p>Histórico de Gastos</p>
 <luiz-pie-chart> </luiz-pie-chart>
-<luiz-line-chart> </luiz-line-chart>
-<luiz-vertical-bar-chart> </luiz-vertical-bar-chart>
+<!-- <luiz-line-chart> </luiz-line-chart>
+<luiz-vertical-bar-chart> </luiz-vertical-bar-chart> -->
 
 <p>selecao do mes</p>
+
+<mat-form-field appearance="fill">
+    <mat-label>Choose a date</mat-label>
+    <input matInput [matDatepicker]="picker" />
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
+  </mat-form-field>
+  
+
 <p>Adiciona gastos</p>
 <p>Edita gastos</p>
