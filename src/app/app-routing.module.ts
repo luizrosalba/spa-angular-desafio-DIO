@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { ProventosComponent } from './proventos/proventos.component';
-import { GastosComponent } from './gastos/gastos.component';
-import { BalancoComponent } from './balanco/balanco.component';
+import { HomeComponent } from './pages/home/home.component';
+import { ProventosComponent } from './pages/proventos/proventos.component';
+import { GastosComponent } from './pages/gastos/gastos.component';
+import { BalancoComponent } from './pages/balanco/balanco.component';
 
 
 
