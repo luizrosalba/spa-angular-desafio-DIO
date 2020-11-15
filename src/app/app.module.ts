@@ -7,8 +7,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { CoreModule } from './core/core.module';
 import { PagesModule } from './pages/pages.module';
-import { ChartsModule } from './charts/charts.module';
-
 
 
 
@@ -22,7 +20,7 @@ import { ChartsModule } from './charts/charts.module';
     BrowserAnimationsModule,
     CoreModule,
     PagesModule,
-    ChartsModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -6,6 +6,8 @@ import { GastosComponent } from './gastos/gastos.component';
 import { ProventosComponent } from './proventos/proventos.component';
 import { BalancoComponent } from './balanco/balanco.component';
 
+import { ChartsModule } from '../charts/charts.module';
+
 
 @NgModule({
   declarations: [
@@ -15,7 +17,8 @@ import { BalancoComponent } from './balanco/balanco.component';
     BalancoComponent,
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    ChartsModule,
   ],
   exports:[
     HomeComponent,
