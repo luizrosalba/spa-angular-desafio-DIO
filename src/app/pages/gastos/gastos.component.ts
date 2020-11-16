@@ -38,9 +38,8 @@ export class GastosComponent implements OnInit {
   
 
 
-  ngOnInit(): void{
 
-    
+  ngOnInit(): void{
 
     this.transacoesService.getTransacoes("Luiz"); /// faz a request 
     this.transacoesService.getTransacoes("Luiz")
@@ -49,13 +48,11 @@ export class GastosComponent implements OnInit {
             this.transacoes = transacoes;
             this.dataSource=  this.transacoes; /// preenche a tabela com todas as transações 
        });
-
-       
   }
   
 
   dentroDoIntervalo(from,to,check){
-    return ((check > from && check < to))
+    return ((check >= from && check <= to))
   }
 
   filtrar (){
@@ -86,37 +83,37 @@ export class GastosComponent implements OnInit {
     // this.dataSource = this.dataSource.filter(item => 
     //   item.classificacaoTransacao !== 'transporte');
     
-    this.dataSource = this.dataSource.filter(item => 
-      item);    
+    // this.dataSource = this.dataSource.filter(item => 
+    //   item);    
     
       ///filtrando o gráfico
-    // this.transacoesFiltrada = this.dataSource.filter(item => 
-    //   item.mesTransacao === 10);
-
-      this.dataSource.forEach(item => {
-      dia =  item.diaTransacao;
-      mes = item.mesTransacao;
-      ano= item.anoTransacao;
-      var dateCheck = `${dia}/${mes}/${ano}`;
-      var c = dateCheck.split("/");
-      var check = new Date(parseInt(c[2]), parseInt(c[1])-1, parseInt(c[0]));
-      //console.log(this.dentroDoIntervalo(from,to,check));
-      this.transacoesFiltrada.push(item);
-    });
+    this.transacoesFiltrada = this.dataSource.filter(item => 
+      {
+        dia =  item.diaTransacao;
+        mes = item.mesTransacao;
+        ano= item.anoTransacao;
+        var dateCheck = `${dia}/${mes}/${ano}`;
+        var c = dateCheck.split("/");
+        var check = new Date(parseInt(c[2]), parseInt(c[1])-1, parseInt(c[0]));
+        return (this.dentroDoIntervalo(from,to,check) )
+      }
+      );
 
 
-      //   console.log(this.transacoesFiltrada);
+        //  console.log(this.transacoesFiltrada);
       
-
+        /// atualiza o grafico 
       this.single = 
         this.transacoesFiltrada.map(datum => ({ 
           name: datum.mesTransacao, 
           value: datum.valorTransacao }));
-
-
      
 
-      // console.log(this.single);
+          /// atualiza a tabela 
+          this.dataSource = this.transacoesFiltrada.map(item => 
+               item);   
+
+       //console.log(this.single);
 
   }
   
@@ -134,6 +131,18 @@ export class GastosComponent implements OnInit {
 // console.log(this.rangeFormGroup.value.end.getDate());
 // console.log(this.rangeFormGroup.value.end.getMonth()+1);
 // console.log(this.rangeFormGroup.value.end.getYear()+1900);
+
+
+ //   this.dataSource.forEach(item => {
+    //   dia =  item.diaTransacao;
+    //   mes = item.mesTransacao;
+    //   ano= item.anoTransacao;
+    //   var dateCheck = `${dia}/${mes}/${ano}`;
+    //   var c = dateCheck.split("/");
+    //   var check = new Date(parseInt(c[2]), parseInt(c[1])-1, parseInt(c[0]));
+    //   if(this.dentroDoIntervalo(from,to,check) )
+    //     this.transacoesFiltrada.push(tra);
+    // });
 
 
 
