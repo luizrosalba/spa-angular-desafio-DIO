@@ -6,7 +6,7 @@ import {MatNativeDateModule} from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import {MatTableModule} from '@angular/material/table';
 import {MatButtonModule} from '@angular/material/button';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { HomeComponent } from './home/home.component';
 import { GastosComponent } from './gastos/gastos.component';
@@ -33,6 +33,8 @@ import { ChartsModule } from '../charts/charts.module';
     MatInputModule,
     MatTableModule,
     MatButtonModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   exports:[
     HomeComponent,
