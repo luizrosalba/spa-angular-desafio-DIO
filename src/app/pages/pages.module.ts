@@ -1,14 +1,18 @@
-import { NgModule} from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatNativeDateModule} from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
+import {MatTableModule} from '@angular/material/table';
+import {MatButtonModule} from '@angular/material/button';
+
 
 import { HomeComponent } from './home/home.component';
 import { GastosComponent } from './gastos/gastos.component';
 import { ProventosComponent } from './proventos/proventos.component';
 import { BalancoComponent } from './balanco/balanco.component';
+import { TransacoesService } from './transacoes.service';
 
 import { ChartsModule } from '../charts/charts.module';
 
@@ -27,6 +31,8 @@ import { ChartsModule } from '../charts/charts.module';
     MatDatepickerModule,
     MatFormFieldModule,
     MatInputModule,
+    MatTableModule,
+    MatButtonModule,
   ],
   exports:[
     HomeComponent,
@@ -35,6 +41,10 @@ import { ChartsModule } from '../charts/charts.module';
     BalancoComponent,
     MatFormFieldModule, 
     MatInputModule, 
-  ]
+  ],
+  providers: [
+    TransacoesService,
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class PagesModule { }

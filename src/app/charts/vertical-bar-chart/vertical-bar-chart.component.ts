@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
-import { single } from '../data-vertical';
+//import { single } from '../data-vertical';
 
 @Component({
   selector: 'luiz-vertical-bar-chart',
@@ -9,7 +9,7 @@ import { single } from '../data-vertical';
 })
 export class VerticalBarChartComponent  {
 
-  single: any[];
+  @Input() single: any[];
   multi: any[];
 
   view: any[] = [700, 400];
@@ -29,7 +29,8 @@ export class VerticalBarChartComponent  {
   };
 
   constructor() {
-    Object.assign(this, { single })
+    Object.assign(this,  this.single);
+   
   }
 
   onSelect(event) {
