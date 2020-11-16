@@ -50,19 +50,10 @@ export function getEntities() {
         nome: "Luiz",
         ID: 1,
         valorTransacao: -50,
-        diaTransacao: 2,
+        diaTransacao: 15,
         mesTransacao: 11,
         anoTransacao: 2020,
         classificacaoTransacao: "alimentacao",
-      },
-      {
-        nome: "Luiz",
-        ID: 1,
-        valorTransacao: 100,
-        diaTransacao: 2,
-        mesTransacao: 11,
-        anoTransacao: 2020,
-        classificacaoTransacao: "freelance",
       },
       {
         nome: "Luiz",
@@ -73,5 +64,36 @@ export function getEntities() {
         anoTransacao: 2020,
         classificacaoTransacao: "transporte",
       },
+      {
+        nome: "Luiz",
+        ID: 1,
+        valorTransacao: -12.47,
+        diaTransacao: 16,
+        mesTransacao: 11,
+        anoTransacao: 2020,
+        classificacaoTransacao: "transporte",
+      },
+
+      {
+        nome: "Luiz",
+        ID: 1,
+        valorTransacao: -12.47,
+        diaTransacao: 17,
+        mesTransacao: 11,
+        anoTransacao: 2020,
+        classificacaoTransacao: "transporte",
+      },
+
+      {
+        nome: "Luiz",
+        ID: 1,
+        valorTransacao: -12.47,
+        diaTransacao: 18,
+        mesTransacao: 11,
+        anoTransacao: 2020,
+        classificacaoTransacao: "transporte",
+      },
+
+
 
   ]

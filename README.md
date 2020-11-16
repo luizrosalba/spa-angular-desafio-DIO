@@ -23,6 +23,8 @@ Objetivos:
 - Uma interação usando property binding 
 - Explicação em vídeo postado no youtube : 
 
+
+
 # Procedimentos : 
 
 - criei componente Home 
