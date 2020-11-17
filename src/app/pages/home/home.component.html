@@ -1,60 +1,109 @@
 <!-- <p>Olá ! {{user}}</p> -->
 
-<p>Olá !</p>
 
-<p> HIstorico Ultimos 3 mesmes </p>
-<p>Sua saúde financeira é : </p>
+<p class="titulo">Adicionar Uma Transação:</p>
 
-<p>Adicionar Valores:</p>
+<div class="grid-container">
+  <div>
+    <form class="container" [formGroup]="AdicionarTransacao" (ngSubmit)="onSubmit(AdicionarTransacao.value)"> 
+      <p>Insira o nome: </p>
+      <mat-form-field appearance="fill">
+        <mat-label>Nome</mat-label>
+        <input matInput type="text" class="example-right-align" 
+        formControlName="nome" value="luiz">
+      </mat-form-field>
 
-<mat-form-field appearance="fill">
-    <mat-label>Valor</mat-label>
-    <input matInput type="number" class="example-right-align">
-    <span matPrefix>R$&nbsp;</span>
-  </mat-form-field>
+      <p>Insira o ID: </p>
 
-  <button mat-button color="primary">1centavo</button>
-  <button mat-button color="primary">-1centavo</button>
+      <mat-form-field appearance="fill">
+        <mat-label>ID</mat-label>
+        <input matInput type="text" class="example-right-align" 
+        formControlName="ID" value="1">
+      </mat-form-field>
+
+      <p>Insira o valor: </p>
+      <mat-form-field appearance="fill">
+        <mat-label>Valor</mat-label>
+        <input matInput type="number" class="example-right-align" 
+        formControlName="valorTransacao">
+        <span matPrefix>R$&nbsp;</span>
+      </mat-form-field>
+      
+      
+      <p>Insira a Data: </p>
+    
+      <mat-form-field appearance="fill">
+        <mat-label>Data da Transação</mat-label>
+        <input matInput [matDatepicker]="picker" (dateInput)="OnDateChange($event.value)" 
+        formControlName="dataTransacao" >
+        <mat-datepicker-toggle matSuffix [for]="picker" > </mat-datepicker-toggle>
+        <mat-datepicker #picker >
+      </mat-datepicker>
+      </mat-form-field>
+
+      <p>Insira a Classificação: </p>
+
+
+      <mat-form-field appearance="fill">
+      <mat-label>Classificação Transação</mat-label>
+      <select matNativeControl required formControlName="classificacaoTransacao">
+        <option value="alimentacao">Alimentação</option>
+        <option value="educacao">Educação</option>
+        <option value="transporte">Transporte</option>
+        <option value="salario">Salário</option>
+        <option value="trabalhoextra">Trabalhos Extras</option>
+      </select>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" >Confirmar </button>
+
+  </form>
+  </div>
+  <div>
+    <p>
+    </p>
+        <p class="titulo">Altere o valor:</p>
+    <p>
+      <button mat-raised-button color="primary"  type="button" (click)=Varia(0.01)>1centavo</button>
+      <button mat-raised-button color="warn"  type="button" (click)=Varia(-0.01)>-1centavo</button>
+    </p>
+    <p>
+      <button mat-raised-button color="primary"  type="button" (click)=Varia(1)>1 real</button>
+      <button mat-raised-button color="warn"  type="button" (click)=Varia(-1)>-1 real</button>
   
-  <button mat-button color="primary">1 real</button>
-  <button mat-button color="primary">-1 real</button>
+    </p>
+    <p>
+      <button mat-raised-button color="primary"  type="button" (click)=Varia(10)>10 reais</button>
+      <button mat-raised-button color="warn"  type="button" (click)=Varia(-10)>-10 reais </button>
+        
+    </p>
+
+    <p>
+      <button mat-raised-button color="primary"  type="button" (click)=Varia(50)>50 reais</button>
+      <button mat-raised-button color="warn"  type="button" (click)=Varia(-50)>-50 reais </button>
+        
+    </p>
+
+    <p>
+      <button mat-raised-button color="primary"  type="button" (click)=Varia(100)>100 reais</button>
+      <button mat-raised-button color="warn"  type="button" (click)=Varia(-100)>-100 reais </button>
+        
+    </p>
+
+    <p>
+      <button mat-raised-button color="primary"  type="button" (click)=Varia(1000)>1000 reais</button>
+      <button mat-raised-button color="warn"  type="button" (click)=Varia(-1000)>-1000 reais </button>
+        
+    </p>
+
+  </div>
+</div>
+
+
+<!-- value="{{valor.toFixed(2)}}" -->
+
   
-  <button mat-button color="primary">10 reais</button>
-  <button mat-button color="primary">-10 reais </button>
-  
-  <button mat-button color="primary">50 reais</button>
-  <button mat-button color="primary">-50 reais </button>
-  
-  <button mat-button color="primary">100 reais</button>
-  <button mat-button color="primary">-100 reais </button>
-  
-  <button mat-button color="primary">1000 reais</button>
-  <button mat-button color="primary">-1000 reais </button>
-  
-  <button mat-button color="primary"> Adicionar </button>
-
-
-  <mat-form-field appearance="fill">
-    <mat-label>Choose a date</mat-label>
-    <input matInput [matDatepicker]="picker">
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
-  </mat-form-field>
-
-
-
-<h4>Basic native select</h4>
-<mat-form-field appearance="fill">
-  <mat-label>Cars</mat-label>
-  <select matNativeControl required>
-    <option value="volvo">Volvo</option>
-    <option value="saab">Saab</option>
-    <option value="mercedes">Mercedes</option>
-    <option value="audi">Audi</option>
-  </select>
-</mat-form-field>
-
-
+   
 <!-- nome: "Luiz",
 ID: 1,
 valorTransacao: -1000,

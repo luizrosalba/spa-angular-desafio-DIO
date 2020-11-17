@@ -49,8 +49,8 @@ export class GastosComponent implements OnInit {
   
   Remover(transacao:Transacoes){
     console.log(transacao);
-    this.transacoesService.removeTransacoes(transacao); /// faz a request 
-    this.transacoesService.removeTransacoes(transacao)
+    this.transacoesService.removeTransacao(transacao); /// faz a request 
+    this.transacoesService.removeTransacao(transacao)
     .subscribe(transacoes => 
       {
          this.transacoes = transacoes;

@@ -3,7 +3,7 @@ import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
 
 import { Transacoes } from '../model/transacoes';
 
-import { getEntities, removeEntities } from '../../../src/assets/db';
+import { createEntitie, getEntities, removeEntities } from '../../../src/assets/db';
 import { delay} from 'rxjs/operators';
 
 @Injectable({
@@ -27,11 +27,18 @@ export class TransacoesService {
      .pipe(delay(2000)); /// se colocar o delay ele entra como undefined 
   }
 
-  removeTransacoes(transacao): Observable<Transacoes[]> {
+  removeTransacao(transacao): Observable<Transacoes[]> {
     removeEntities(transacao);
     return of(getEntities())
      .pipe(delay(2000)); /// se colocar o delay ele entra como undefined 
   }
+
+  createTransacao(transacao): Observable<Transacoes[]> {
+    createEntitie(transacao);
+    return of(getEntities())
+     .pipe(delay(2000)); /// se colocar o delay ele entra como undefined 
+  }
+
 
 
 

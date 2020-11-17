@@ -6,8 +6,15 @@ export function getEntities() {
   }
   
   export function setEntities(entities: Transacoes[]) {
-    _entities = entities;
+    _entities = entities; /// nao reescreve 
   }
+
+  export function createEntitie(entitie: Transacoes) {
+    
+    setEntities(_entities.concat(entitie));
+    console.log(_entities);
+  }
+
   
   export function removeEntities(entitie: Transacoes) {
     const filteredEntities = _entities.filter( item => {
@@ -30,6 +37,9 @@ export function getEntities() {
     
   }
   
+ 
+  
+
 
   
   let _entities: Transacoes[] = [

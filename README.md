@@ -18,7 +18,7 @@ Este projeto usa conceitos de:
 
 Objetivos: 
 
-- Criar no mínimo 3 componentes interagindo na mesma página 
+- Criar no mínimo 3 componentes interagindo na mesma página
 - 4 componentes de Angular Material 
 - Uma interação usando property binding 
 - Explicação em vídeo postado no youtube : 
@@ -27,7 +27,7 @@ Objetivos:
 
 # Procedimentos : 
 
-- criei componente Home 
+- criei componente Home y
 
 # Documentação do Ng New
 
