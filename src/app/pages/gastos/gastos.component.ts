@@ -21,26 +21,22 @@ export class GastosComponent implements OnInit {
   })  
   
   
-
-
-  transacoes: Transacoes[];
-  transacoesFiltrada: Transacoes[];
-
-  transacoes$: Observable<Transacoes[]>;
-  
   constructor(private transacoesService: TransacoesService) { }
 
   displayedColumns: string[] = ['nome', 'ID', 'valorTransacao',
   'diaTransacao', 'mesTransacao','anoTransacao','classificacaoTransacao'];
+
   dataSource : Transacoes[];
-  
+  transacoes: Transacoes[];
+  transacoesFiltrada: Transacoes[];
+  transacoes$: Observable<Transacoes[]>;
+
   single = [];
   
 
 
 
   ngOnInit(): void{
-
     this.transacoesService.getTransacoes("Luiz"); /// faz a request 
     this.transacoesService.getTransacoes("Luiz")
        .subscribe(transacoes => 
@@ -48,6 +44,7 @@ export class GastosComponent implements OnInit {
             this.transacoes = transacoes;
             this.dataSource=  this.transacoes; /// preenche a tabela com todas as transações 
        });
+  
   }
   
 
@@ -55,8 +52,24 @@ export class GastosComponent implements OnInit {
     return ((check >= from && check <= to))
   }
 
+  agruparPor(objetoArray, prop1 ,prop2) {
+    return objetoArray.reduce(function (acc, obj) {
+      let key = obj[prop1]; /// key = "10/2020"
+      let value = obj[prop2]; /// value = -1000
+      if (!acc[key]) { /// se nao existir , cria 
+        acc[key] = [];  /// cria vazio 
+        acc[key]=value;   /// pusha o objeto inteiro da primeira vez 
+      }else
+      acc[key]+=value;   /// na segunda eu quero que ele pegue o valor existente e some com o que está vindo 
+      return acc;
+    }, {});
+  }
+
+  
   filtrar (){
     
+   
+
 
     /// pegando a data para filtrar 
     
@@ -89,31 +102,59 @@ export class GastosComponent implements OnInit {
       ///filtrando o gráfico
     this.transacoesFiltrada = this.dataSource.filter(item => 
       {
-        dia =  item.diaTransacao;
-        mes = item.mesTransacao;
-        ano= item.anoTransacao;
-        var dateCheck = `${dia}/${mes}/${ano}`;
-        var c = dateCheck.split("/");
-        var check = new Date(parseInt(c[2]), parseInt(c[1])-1, parseInt(c[0]));
-        return (this.dentroDoIntervalo(from,to,check) )
+            dia =  item.diaTransacao;
+            mes = item.mesTransacao;
+            ano= item.anoTransacao;
+            var dateCheck = `${dia}/${mes}/${ano}`;
+            var c = dateCheck.split("/");
+            var check = new Date(parseInt(c[2]), parseInt(c[1])-1, parseInt(c[0]));
+            return (this.dentroDoIntervalo(from,to,check) )
       }
       );
 
+     // let reduceMesAno = this.transacoesFiltrada.reduce();
 
-        //  console.log(this.transacoesFiltrada);
+        
       
         /// atualiza o grafico 
-      this.single = 
+        
+        
+      console.log(this.transacoesFiltrada);
+
+      ///vetor mes ano 
+
+      let agrupamento = 
         this.transacoesFiltrada.map(datum => ({ 
-          name: datum.mesTransacao, 
+          name: datum.mesTransacao.toString()+'/'+datum.anoTransacao.toString(), 
           value: datum.valorTransacao }));
+          
+
+        let objTotalPorData =  this.agruparPor(agrupamento,'name','value');
+        let vecTotalPorData = []; 
+        let obj= { };
+        
+        for ( var mesAno in objTotalPorData) 
+        {
+          obj = {
+            name : mesAno , 
+            value:objTotalPorData[mesAno] ,
+          }
+          vecTotalPorData.push(obj);
+        }
+         
+
+      // vetorTotalPorData.map(datum =>  
+      //   console.log(datum));
+
+       this.single = 
+        vecTotalPorData.map(datum => ({ 
+           name: datum.name, 
+           value: datum.value }));
      
 
-          /// atualiza a tabela 
-          this.dataSource = this.transacoesFiltrada.map(item => 
-               item);   
+         
 
-       //console.log(this.single);
+       
 
   }
   
@@ -187,3 +228,4 @@ export class GastosComponent implements OnInit {
     //     console.log(this.transacoes); /// so depois do subscribe que terei acesso as informaç~les 
         
     //   });
+

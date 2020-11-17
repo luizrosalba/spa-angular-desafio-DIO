@@ -20,9 +20,9 @@ export class VerticalBarChartComponent  {
   gradient = false;
   showLegend = true;
   showXAxisLabel = true;
-  xAxisLabel = 'Country';
+  xAxisLabel = 'Mês/Ano';
   showYAxisLabel = true;
-  yAxisLabel = 'Population';
+  yAxisLabel = 'Total Valor Gasto';
 
   colorScheme = {
     domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
