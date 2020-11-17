@@ -10,7 +10,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { HomeComponent } from './home/home.component';
 import { GastosComponent } from './gastos/gastos.component';
-import { ProventosComponent } from './proventos/proventos.component';
 import { TransacoesService } from './transacoes.service';
 
 import { ChartsModule } from '../charts/charts.module';
@@ -20,7 +19,6 @@ import { ChartsModule } from '../charts/charts.module';
   declarations: [
     HomeComponent,
     GastosComponent,
-    ProventosComponent,
   ],
   imports: [
     CommonModule,
@@ -37,7 +35,6 @@ import { ChartsModule } from '../charts/charts.module';
   exports:[
     HomeComponent,
     GastosComponent,
-    ProventosComponent,
     MatFormFieldModule, 
     MatInputModule, 
   ],

@@ -1,101 +1,100 @@
 
 
-<p>Seleção do Tempo</p>
+<p class="titulo">Selecione o Tempo:</p>
 
-<form [formGroup]="rangeFormGroup">  
-  <div>  
-    <mat-form-field appearance="fill">  
-      <mat-label>Entre com um período</mat-label>  
-      <mat-date-range-input [rangePicker]="picker">   
-        <input matStartDate placeholder="Data de Início" formControlName="start">  
-        <input matEndDate placeholder="Data de fim" formControlName="end">  
-      </mat-date-range-input>  
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>  
-      <mat-date-range-picker #picker></mat-date-range-picker>  
-      <mat-error>Favor Selecionar o Período</mat-error>  
-    </mat-form-field>  
-  </div>  
-</form>  
+<div class="grid-container">
 
-
-  <button color="accent" mat-raised-button (click)="filtrar()">Filtrar</button>
- 
-  
-  
-
-<p>Histórico de Gastos</p>
-<!-- <luiz-pie-chart> </luiz-pie-chart> -->
-<!-- <luiz-line-chart> </luiz-line-chart> -->
-
-
-
-<div *ngIf="picker">
-    
-    <luiz-vertical-bar-chart [single]=single> 
-    </luiz-vertical-bar-chart>  
+  <div>
+    <p class="titulo">Entre com o período:</p>      
+      <form [formGroup]="rangeFormGroup">  
+        <div>  
+          <mat-form-field appearance="fill">  
+            <mat-label>Entre com um período</mat-label>  
+            <mat-date-range-input [rangePicker]="picker">   
+              <input matStartDate placeholder="Data de Início" formControlName="start">  
+              <input matEndDate placeholder="Data de fim" formControlName="end">  
+            </mat-date-range-input>  
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>  
+            <mat-date-range-picker #picker></mat-date-range-picker>  
+            <mat-error>Favor Selecionar o Período</mat-error>  
+          </mat-form-field>  
+        </div>  
+      </form>  
+      <button color="accent" mat-raised-button (click)="filtrar()">Filtrar</button>
+  </div>
+  <div>
+      <p class="titulo">Histórico de Gastos:</p>
+      <!-- <luiz-pie-chart> </luiz-pie-chart> -->
+      <!-- <luiz-line-chart> </luiz-line-chart> -->
+      <div *ngIf="picker">
+          <luiz-vertical-bar-chart [single]=single> 
+          </luiz-vertical-bar-chart>  
+      </div>
+  </div>
 </div>
 
-
-
-
+ 
+<div class="container">
 
 <!-- <table mat-table [dataSource]="dataSource" class="mat-elevation-z8"> -->
   <table mat-table [dataSource]="transacoesFiltrada" class="mat-elevation-z8">
 
-  <!--- Note that these columns can be defined in any order.
-        The actual rendered columns are set as a property on the row definition" -->
-
-  <!-- Position Column -->
-  <ng-container matColumnDef="nome">
-    <th mat-header-cell *matHeaderCellDef> Nome </th>
-    <td mat-cell *matCellDef="let element"> {{element.nome}} </td>
-  </ng-container>
-
-   <!-- Weight Column -->
-  <ng-container matColumnDef="ID">
-    <th mat-header-cell *matHeaderCellDef> ID </th>
-    <td mat-cell *matCellDef="let element"> {{element.ID}} </td>
-  </ng-container>
-
-  <!-- Symbol Column -->
-  <ng-container matColumnDef="valorTransacao">
-    <th mat-header-cell *matHeaderCellDef> Valor da Transação </th>
-    <td mat-cell *matCellDef="let element"> {{element.valorTransacao}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="diaTransacao">
-    <th mat-header-cell *matHeaderCellDef> Dia da Transação </th>
-    <td mat-cell *matCellDef="let element"> {{element.diaTransacao}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="mesTransacao">
-    <th mat-header-cell *matHeaderCellDef> Mês da Transação </th>
-    <td mat-cell *matCellDef="let element"> {{element.mesTransacao}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="anoTransacao">
-    <th mat-header-cell *matHeaderCellDef> Ano da Transação </th>
-    <td mat-cell *matCellDef="let element"> {{element.anoTransacao}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="classificacaoTransacao">
-    <th mat-header-cell *matHeaderCellDef> Classificação da Transação  </th>
-    <td mat-cell *matCellDef="let element"> {{element.classificacaoTransacao}} </td>
-  </ng-container>
-
-
-  <ng-container matColumnDef="actions">
-    <th mat-header-cell  *matHeaderCellDef > Remover Entrada </th>
-    <td mat-cell *matCellDef="let element" >  
-      <button mat-button (click)="Remover(element)" >Remover Entrada</button>
-    </td>
-  </ng-container>
-
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
-
-</table>
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+  
+    <!-- Position Column -->
+    <ng-container matColumnDef="nome">
+      <th mat-header-cell *matHeaderCellDef> Nome </th>
+      <td mat-cell *matCellDef="let element"> {{element.nome}} </td>
+    </ng-container>
+  
+     <!-- Weight Column -->
+    <ng-container matColumnDef="ID">
+      <th mat-header-cell *matHeaderCellDef> ID </th>
+      <td mat-cell *matCellDef="let element"> {{element.ID}} </td>
+    </ng-container>
+  
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="valorTransacao">
+      <th mat-header-cell *matHeaderCellDef> Valor da Transação </th>
+      <td mat-cell *matCellDef="let element"> {{element.valorTransacao}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="diaTransacao">
+      <th mat-header-cell *matHeaderCellDef> Dia da Transação </th>
+      <td mat-cell *matCellDef="let element"> {{element.diaTransacao}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="mesTransacao">
+      <th mat-header-cell *matHeaderCellDef> Mês da Transação </th>
+      <td mat-cell *matCellDef="let element"> {{element.mesTransacao}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="anoTransacao">
+      <th mat-header-cell *matHeaderCellDef> Ano da Transação </th>
+      <td mat-cell *matCellDef="let element"> {{element.anoTransacao}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="classificacaoTransacao">
+      <th mat-header-cell *matHeaderCellDef> Classificação da Transação  </th>
+      <td mat-cell *matCellDef="let element"> {{element.classificacaoTransacao}} </td>
+    </ng-container>
+  
+  
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell  *matHeaderCellDef > Remover Entrada </th>
+      <td mat-cell *matCellDef="let element" >  
+        <button mat-raised-button color="warn" (click)="Remover(element)" >Remover Entrada</button>
+      </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  
+  
+  </table>
+  
+</div>
 
 
 
