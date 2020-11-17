@@ -8,6 +8,27 @@ export function getEntities() {
     _entities = entities;
   }
   
+  export function removeEntities(entities: Transacoes) {
+    
+    const filteredPeople = _entities.filter((item) => {
+      if (
+        (item.ID === entities.ID) &&  
+        (item.nome === entities.nome) &&  
+        (item.ID === entities.ID) &&  
+        (item.ID === entities.ID) &&  
+        (item.ID === entities.ID) &&  
+      )
+      
+    }
+      
+
+      
+
+      
+    return _entities;
+  }
+  
+
   
   let _entities: Transacoes[] = [
     {

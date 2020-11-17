@@ -24,7 +24,7 @@ export class GastosComponent implements OnInit {
   constructor(private transacoesService: TransacoesService) { }
 
   displayedColumns: string[] = ['nome', 'ID', 'valorTransacao',
-  'diaTransacao', 'mesTransacao','anoTransacao','classificacaoTransacao'];
+  'diaTransacao', 'mesTransacao','anoTransacao','classificacaoTransacao','actions'];
 
   dataSource : Transacoes[];
   transacoes: Transacoes[];
@@ -67,12 +67,8 @@ export class GastosComponent implements OnInit {
 
   
   filtrar (){
-    
-   
-
 
     /// pegando a data para filtrar 
-    
     let dia =  this.rangeFormGroup.value.start.getDate();
     let mes = this.rangeFormGroup.value.start.getMonth()+1;
     let ano= this.rangeFormGroup.value.start.getYear()+1900;
@@ -86,11 +82,8 @@ export class GastosComponent implements OnInit {
     var d1 = dateFrom.split("/");
     var d2 = dateTo.split("/");
     
-
     var from = new Date(parseInt(d1[2]), parseInt(d1[1])-1, parseInt(d1[0]));  // -1 because months are from 0 to 11
     var to   = new Date(parseInt(d2[2]), parseInt(d2[1])-1, parseInt(d2[0]));
-   
-
   
    // filtrando a tabela 
     // this.dataSource = this.dataSource.filter(item => 
@@ -99,7 +92,7 @@ export class GastosComponent implements OnInit {
     // this.dataSource = this.dataSource.filter(item => 
     //   item);    
     
-      ///filtrando o gráfico
+    ///filtrando o gráfico
     this.transacoesFiltrada = this.dataSource.filter(item => 
       {
             dia =  item.diaTransacao;
@@ -113,22 +106,14 @@ export class GastosComponent implements OnInit {
       );
 
      // let reduceMesAno = this.transacoesFiltrada.reduce();
-
-        
-      
-        /// atualiza o grafico 
-        
-        
-      console.log(this.transacoesFiltrada);
-
-      ///vetor mes ano 
-
-      let agrupamento = 
+     /// atualiza o grafico 
+     //console.log(this.transacoesFiltrada);
+     ///vetor mes ano 
+     let agrupamento = 
         this.transacoesFiltrada.map(datum => ({ 
           name: datum.mesTransacao.toString()+'/'+datum.anoTransacao.toString(), 
           value: datum.valorTransacao }));
-          
-
+ 
         let objTotalPorData =  this.agruparPor(agrupamento,'name','value');
         let vecTotalPorData = []; 
         let obj= { };
@@ -141,7 +126,6 @@ export class GastosComponent implements OnInit {
           }
           vecTotalPorData.push(obj);
         }
-         
 
       // vetorTotalPorData.map(datum =>  
       //   console.log(datum));
@@ -150,11 +134,6 @@ export class GastosComponent implements OnInit {
         vecTotalPorData.map(datum => ({ 
            name: datum.name, 
            value: datum.value }));
-     
-
-         
-
-       
 
   }
   
