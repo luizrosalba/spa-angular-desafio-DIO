@@ -6,6 +6,7 @@ import { HeaderComponent } from './header/header.component';
 import {MatIconModule} from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
 
+
 @NgModule({
   declarations: [
     // NavBarComponent,

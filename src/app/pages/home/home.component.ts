@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { TransacoesService } from 'src/app/pages/transacoes.service';
+import { Transacoes } from '../../model/transacoes';
 
 
 interface Classificacao {
@@ -18,15 +19,17 @@ interface Classificacao {
 })
 export class HomeComponent  {
 
-  
-  valor=0.0; 
-  acerto= {};
+  acerto = {} as Transacoes;
 
+  valor=0.0; 
+  
+   
+  
+  
   constructor(private transacoesService: TransacoesService,
               private formBuilder: FormBuilder) 
   {
     
-     
   }
 
   public AdicionarTransacao = new FormGroup({
@@ -58,25 +61,27 @@ export class HomeComponent  {
     let dia =  valorSubmetido.dataTransacao.getDate();
     let mes = valorSubmetido.dataTransacao.getMonth()+1;
     let ano= valorSubmetido.dataTransacao.getYear()+1900;
-    var dateFrom = `${dia}/${mes}/${ano}`;
+//    var dateFrom = `${dia}/${mes}/${ano}`;
 
-    console.log(valorSubmetido.ID);
-    console.log(valorSubmetido.classificacaoTransacao);
-    console.log(valorSubmetido.nome);
-    console.log(valorSubmetido.valorTransacao);
-    
+    // console.log(valorSubmetido.ID);
+    // console.log(valorSubmetido.classificacaoTransacao);
+    // console.log(valorSubmetido.nome);
+    // console.log(valorSubmetido.valorTransacao);
 
-
-     this.acerto["ID"] = parseInt(valorSubmetido.ID);
-     this.acerto["diaTransacao"]= dia; 
-     this.acerto["mesTransacao"]= mes; 
-     this.acerto["anoTransacao"]= ano; 
-     this.acerto["classificacaoTransacao"]= valorSubmetido.classificacaoTransacao; 
-     this.acerto["nome"] = valorSubmetido.nome; 
-     this.acerto["valorTransacao"]= parseFloat(valorSubmetido.valorTransacao); 
+     //this.acerto.ID = parseInt(valorSubmetido.ID);
+     this.acerto.diaTransacao= dia; 
+     this.acerto.mesTransacao= mes; 
+     this.acerto.anoTransacao= ano; 
+     this.acerto.classificacaoTransacao= valorSubmetido.classificacaoTransacao; 
+     this.acerto.nome = valorSubmetido.nome; 
+     this.acerto.valorTransacao= parseFloat(valorSubmetido.valorTransacao); 
 
     // Process checkout data here
-    this.transacoesService.createTransacao(this.acerto);
+
+    this.transacoesService.postTransacao(this.acerto).subscribe((users) => {
+      this.acerto = users;
+    });
+
     // this.checkoutForm.reset();
     alert("Transação de R$ " + this.acerto["valorTransacao"] + " criada");
     console.warn('Your order has been submitted', valorSubmetido);

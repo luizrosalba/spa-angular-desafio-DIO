@@ -1,25 +1,111 @@
 import { filter } from 'rxjs/operators';
 import { Transacoes } from "../app/model/Transacoes";
 
+
+
+let _entities: Transacoes[] = [
+  {
+    nome: "Luiz",
+    valorTransacao: -1000,
+    diaTransacao: 10,
+    mesTransacao: 10,
+    anoTransacao: 2020,
+    classificacaoTransacao: "educacao",
+  },
+  // {
+  //     nome: "Luiz",
+  //     valorTransacao: -500,
+  //     diaTransacao: 12,
+  //     mesTransacao: 10,
+  //     anoTransacao: 2020,
+  //     classificacaoTransacao: "transporte",
+  //   },
+  //   {
+  //     nome: "Luiz",
+  //     valorTransacao: 200,
+  //     diaTransacao: 13,
+  //     mesTransacao: 10,
+  //     anoTransacao: 2020,
+  //     classificacaoTransacao: "alimentacao",
+  //   },
+  //   {
+  //     nome: "Luiz",
+  //     valorTransacao: 1000,
+  //     diaTransacao: 1,
+  //     mesTransacao: 11,
+  //     anoTransacao: 2020,
+  //     classificacaoTransacao: "salario",
+  //   },
+  //   {
+  //     nome: "Luiz",
+  //     valorTransacao: -50,
+  //     diaTransacao: 15,
+  //     mesTransacao: 11,
+  //     anoTransacao: 2020,
+  //     classificacaoTransacao: "alimentacao",
+  //   },
+  //   {
+  //     nome: "Luiz",
+  //     valorTransacao: -12.47,
+  //     diaTransacao: 2,
+  //     mesTransacao: 11,
+  //     anoTransacao: 2020,
+  //     classificacaoTransacao: "transporte",
+  //   },
+  //   {
+  //     nome: "Luiz",
+  //     valorTransacao: -12.47,
+  //     diaTransacao: 16,
+  //     mesTransacao: 11,
+  //     anoTransacao: 2020,
+  //     classificacaoTransacao: "transporte",
+  //   },
+
+  //   {
+  //     nome: "Luiz",
+  //     valorTransacao: -12.47,
+  //     diaTransacao: 17,
+  //     mesTransacao: 11,
+  //     anoTransacao: 2020,
+  //     classificacaoTransacao: "transporte",
+  //   },
+
+  //   {
+  //     nome: "Luiz",
+  //     ID: 1,
+  //     valorTransacao: -12.47,
+  //     diaTransacao: 18,
+  //     mesTransacao: 11,
+  //     anoTransacao: 2020,
+  //     classificacaoTransacao: "transporte",
+    
+
+
+
+]
+
+
+
+
+
 export function getEntities() {
     return _entities;
   }
   
   export function setEntities(entities: Transacoes[]) {
-    _entities = entities; /// nao reescreve 
+    _entities = [...entities]; /// nao reescreve 
+    console.log(_entities);
   }
 
   export function createEntitie(entitie: Transacoes) {
     
     setEntities(_entities.concat(entitie));
-    console.log(_entities);
   }
 
-  
-  export function removeEntities(entitie: Transacoes) {
+    export function removeEntities(entitie: Transacoes) {
     const filteredEntities = _entities.filter( item => {
       if (
-        (item.ID === entitie.ID) &&  
+        //(item.ID === entitie.ID) &&  
         (item.nome === entitie.nome) &&  
         (item.anoTransacao === entitie.anoTransacao) &&  
         (item.classificacaoTransacao === entitie.classificacaoTransacao) &&  
@@ -34,99 +120,5 @@ export function getEntities() {
     });
 
     setEntities(filteredEntities);
-    
   }
   
- 
-  
-
-
-  
-  let _entities: Transacoes[] = [
-    {
-      nome: "Luiz",
-      ID: 1,
-      valorTransacao: -1000,
-      diaTransacao: 10,
-      mesTransacao: 10,
-      anoTransacao: 2020,
-      classificacaoTransacao: "educacao",
-    },
-    {
-        nome: "Luiz",
-        ID: 1,
-        valorTransacao: -500,
-        diaTransacao: 12,
-        mesTransacao: 10,
-        anoTransacao: 2020,
-        classificacaoTransacao: "transporte",
-      },
-      {
-        nome: "Luiz",
-        ID: 1,
-        valorTransacao: 200,
-        diaTransacao: 13,
-        mesTransacao: 10,
-        anoTransacao: 2020,
-        classificacaoTransacao: "alimentacao",
-      },
-      {
-        nome: "Luiz",
-        ID: 1,
-        valorTransacao: 1000,
-        diaTransacao: 1,
-        mesTransacao: 11,
-        anoTransacao: 2020,
-        classificacaoTransacao: "salario",
-      },
-      {
-        nome: "Luiz",
-        ID: 1,
-        valorTransacao: -50,
-        diaTransacao: 15,
-        mesTransacao: 11,
-        anoTransacao: 2020,
-        classificacaoTransacao: "alimentacao",
-      },
-      {
-        nome: "Luiz",
-        ID: 1,
-        valorTransacao: -12.47,
-        diaTransacao: 2,
-        mesTransacao: 11,
-        anoTransacao: 2020,
-        classificacaoTransacao: "transporte",
-      },
-      {
-        nome: "Luiz",
-        ID: 1,
-        valorTransacao: -12.47,
-        diaTransacao: 16,
-        mesTransacao: 11,
-        anoTransacao: 2020,
-        classificacaoTransacao: "transporte",
-      },
-
-      {
-        nome: "Luiz",
-        ID: 1,
-        valorTransacao: -12.47,
-        diaTransacao: 17,
-        mesTransacao: 11,
-        anoTransacao: 2020,
-        classificacaoTransacao: "transporte",
-      },
-
-      {
-        nome: "Luiz",
-        ID: 1,
-        valorTransacao: -12.47,
-        diaTransacao: 18,
-        mesTransacao: 11,
-        anoTransacao: 2020,
-        classificacaoTransacao: "transporte",
-      },
-
-
-
-  ]
