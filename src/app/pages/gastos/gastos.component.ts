@@ -47,6 +47,19 @@ export class GastosComponent implements OnInit {
   
   }
   
+  Remover(transacao:Transacoes){
+    console.log(transacao);
+    this.transacoesService.removeTransacoes(transacao); /// faz a request 
+    this.transacoesService.removeTransacoes(transacao)
+    .subscribe(transacoes => 
+      {
+         this.transacoes = transacoes;
+         this.dataSource=  this.transacoes; /// preenche a tabela com todas as transações 
+         console.log(this.dataSource);
+         this.filtrar();
+    });
+
+  }
 
   dentroDoIntervalo(from,to,check){
     return ((check >= from && check <= to))

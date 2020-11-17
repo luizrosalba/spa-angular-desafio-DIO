@@ -1,3 +1,4 @@
+import { filter } from 'rxjs/operators';
 import { Transacoes } from "../app/model/Transacoes";
 
 export function getEntities() {
@@ -8,24 +9,25 @@ export function getEntities() {
     _entities = entities;
   }
   
-  export function removeEntities(entities: Transacoes) {
-    
-    const filteredPeople = _entities.filter((item) => {
+  export function removeEntities(entitie: Transacoes) {
+    const filteredEntities = _entities.filter( item => {
       if (
-        (item.ID === entities.ID) &&  
-        (item.nome === entities.nome) &&  
-        (item.ID === entities.ID) &&  
-        (item.ID === entities.ID) &&  
-        (item.ID === entities.ID) &&  
+        (item.ID === entitie.ID) &&  
+        (item.nome === entitie.nome) &&  
+        (item.anoTransacao === entitie.anoTransacao) &&  
+        (item.classificacaoTransacao === entitie.classificacaoTransacao) &&  
+        (item.diaTransacao === entitie.diaTransacao) &&  
+        (item.mesTransacao === entitie.mesTransacao) &&  
+        (item.anoTransacao === entitie.anoTransacao) &&  
+        (item.valorTransacao === entitie.valorTransacao)  
       )
-      
-    }
-      
+        return false;
+      else 
+       return true ;
+    });
 
-      
-
-      
-    return _entities;
+    setEntities(filteredEntities);
+    
   }
   
 

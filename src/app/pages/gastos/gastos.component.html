@@ -86,7 +86,7 @@
   <ng-container matColumnDef="actions">
     <th mat-header-cell  *matHeaderCellDef > Remover Entrada </th>
     <td mat-cell *matCellDef="let element" >  
-      <button mat-button >Remover Entrada</button>
+      <button mat-button (click)="Remover(element)" >Remover Entrada</button>
     </td>
   </ng-container>
 
