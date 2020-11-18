@@ -9,13 +9,22 @@ financeiro de um usuario
 
 #  Dependência: 
 
-- Para iniciar o banco de dados: 
+Baixar o código do Github 
+```
+git clone https://github.com/luizrosalba/spa-angular-desafio-DIO.git
+```
+Instalar as dependências 
+```
+npm i
+```
+Iniciar o banco de dados: 
 ```
 - Navegar até a pasta assets 
 cd / src/assets 
 - Inicializar o json-server no arquivo db2.json
 json-server --watch db2.json
 ```
+- Imagem do Projeto 
 
 ![](./1.PNG)
 - Este projeto usa conceitos de: 
