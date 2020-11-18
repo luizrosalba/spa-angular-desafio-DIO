@@ -3,15 +3,15 @@ import { Transacoes } from "../app/model/Transacoes";
 
 
 
-let _entities: Transacoes[] = [
-  {
-    nome: "Luiz",
-    valorTransacao: -1000,
-    diaTransacao: 10,
-    mesTransacao: 10,
-    anoTransacao: 2020,
-    classificacaoTransacao: "educacao",
-  },
+// let _entities: Transacoes[] = [
+//   {
+//     nome: "Luiz",
+//     valorTransacao: -1000,
+//     diaTransacao: 10,
+//     mesTransacao: 10,
+//     anoTransacao: 2020,
+//     classificacaoTransacao: "educacao",
+//   },
   // {
   //     nome: "Luiz",
   //     valorTransacao: -500,
@@ -82,43 +82,43 @@ let _entities: Transacoes[] = [
 
 
 
-]
+// ]
 
 
 
 
 
-export function getEntities() {
-    return _entities;
-  }
+// export function getEntities() {
+//     return _entities;
+//   }
   
-  export function setEntities(entities: Transacoes[]) {
-    _entities = [...entities]; /// nao reescreve 
-    console.log(_entities);
-  }
+//   export function setEntities(entities: Transacoes[]) {
+//     _entities = [...entities]; /// nao reescreve 
+//     console.log(_entities);
+//   }
 
-  export function createEntitie(entitie: Transacoes) {
+//   export function createEntitie(entitie: Transacoes) {
     
-    setEntities(_entities.concat(entitie));
-  }
+//     setEntities(_entities.concat(entitie));
+//   }
 
-    export function removeEntities(entitie: Transacoes) {
-    const filteredEntities = _entities.filter( item => {
-      if (
-        //(item.ID === entitie.ID) &&  
-        (item.nome === entitie.nome) &&  
-        (item.anoTransacao === entitie.anoTransacao) &&  
-        (item.classificacaoTransacao === entitie.classificacaoTransacao) &&  
-        (item.diaTransacao === entitie.diaTransacao) &&  
-        (item.mesTransacao === entitie.mesTransacao) &&  
-        (item.anoTransacao === entitie.anoTransacao) &&  
-        (item.valorTransacao === entitie.valorTransacao)  
-      )
-        return false;
-      else 
-       return true ;
-    });
+//     export function removeEntities(entitie: Transacoes) {
+//     const filteredEntities = _entities.filter( item => {
+//       if (
+//         //(item.ID === entitie.ID) &&  
+//         (item.nome === entitie.nome) &&  
+//         (item.anoTransacao === entitie.anoTransacao) &&  
+//         (item.classificacaoTransacao === entitie.classificacaoTransacao) &&  
+//         (item.diaTransacao === entitie.diaTransacao) &&  
+//         (item.mesTransacao === entitie.mesTransacao) &&  
+//         (item.anoTransacao === entitie.anoTransacao) &&  
+//         (item.valorTransacao === entitie.valorTransacao)  
+//       )
+//         return false;
+//       else 
+//        return true ;
+//     });
 
-    setEntities(filteredEntities);
-  }
+//     setEntities(filteredEntities);
+//   }
   

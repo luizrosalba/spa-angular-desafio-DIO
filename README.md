@@ -1,10 +1,24 @@
 # Desafio de Construção de uma SPA em Angular 
 
-Este projeto é requisito necessário para conclusão do bootcamp Aceleração Global Dev#2 da Digital Innovation One (https://digitalinnovation.one/). 
+- Este projeto é requisito necessário para conclusão do bootcamp Aceleração Global Dev#2 da Digital Innovation One (https://digitalinnovation.one/). 
 
-Nele fomos desafiados a construir uma Single Page Application em Angular 2.
+- Nele fomos desafiados a construir uma Single Page Application em Angular 2.
 
-Este projeto usa conceitos de: 
+- Este projeto implementa um Gerenciador Financeiro capaz de armazenar e editar o histórico 
+financeiro de um usuario 
+
+#  Dependência: 
+
+- Para iniciar o banco de dados: 
+```
+- Navegar até a pasta assets 
+cd / src/assets 
+- Inicializar o json-server no arquivo db2.json
+json-server --watch db2.json
+```
+
+![](./1.PNG)
+- Este projeto usa conceitos de: 
 
 - Angular 2 
 - Angular Material 
@@ -22,12 +36,20 @@ Objetivos:
 - 4 componentes de Angular Material 
 - Uma interação usando property binding 
 - Explicação em vídeo postado no youtube : 
-
+- utilizamos a diretiva *ngIf para mostrar o grafico apenas quando o usuário selecionar 
 
 
 # Procedimentos : 
 
-- criei componente Home y
+- Criei uma SPA em Angular , que utiliza diversos componentes angular material como :
+- matInput
+- matDatepicker
+- mat-raised-button
+- Utilizamos Observable para o retorno das consultar HTTP 
+- Utilizamos o lifeCicleHook ngOnInit para receber as transações via HTTP 
+- utilizamos Data-Binding através do método dateInput para mostrar o valor da data ao mesmo tempo que o usuário a seleciona 
+
+
 
 # Documentação do Ng New
 

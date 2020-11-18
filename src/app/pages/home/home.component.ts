@@ -38,7 +38,6 @@ export class HomeComponent  {
     valorTransacao: new FormControl('', [ Validators.required,]),
     dataTransacao: new FormControl('', [ Validators.required,]),
     classificacaoTransacao: new FormControl('', [ Validators.required,]),
-    ID: new FormControl('', [ Validators.required,]),
   });
 
 

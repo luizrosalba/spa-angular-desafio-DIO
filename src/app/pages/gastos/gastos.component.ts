@@ -21,9 +21,14 @@ export class GastosComponent implements OnInit {
   })
 
 
-  constructor(private transacoesService: TransacoesService) { }
+  constructor(private transacoesService: TransacoesService) { 
+    this.transacoesService.getTransacoesHTTP().
+    subscribe((transacoes) => {
+      this.transacoes = transacoes;
+    });
+  }
 
-  displayedColumns: string[] = ['nome', 'ID', 'valorTransacao',
+  displayedColumns: string[] = ['nome', 'valorTransacao',
     'diaTransacao', 'mesTransacao', 'anoTransacao', 'classificacaoTransacao', 'actions'];
 
   //dataSource: Transacoes[]; //// todas as transicoes 
@@ -31,7 +36,7 @@ export class GastosComponent implements OnInit {
   transacoesFiltrada: Transacoes[]; /// transacoes na tabela 
   //transacoes$: Observable<Transacoes[]>;
   single = [];
-
+  show = false;
   //transacoes2: any = []; /// todas as transacoes do banco 
 
   ngOnInit(): void {
@@ -42,25 +47,46 @@ export class GastosComponent implements OnInit {
     //     this.transacoes = transacoes;
     //     //this.dataSource = this.transacoes;
     //   });
-      this.transacoesService.getTransacoesHTTP().
-      subscribe((transacoes) => {
-        this.transacoes = transacoes;
-      });
+
+     
+     
   }
 
   Remover(transacao: Transacoes) {
-    //console.log(transacao);
-    this.transacoesService.removeTransacao(transacao); /// faz a request para remover do banco 
-    this.transacoesService.removeTransacao(transacao) /// recebe o retorno e guarda em transacoes 
-      .subscribe(transacoes => {
-        this.transacoes = transacoes;
-        //this.dataSource = this.transacoes; /// preenche a tabela com todas as transações 
-        this.transacoesFiltrada =[];
-        this.atualizaTabela();
-        this.atualizaGrafico();
-      });
+    
+    this.transacoesFiltrada = this.transacoesFiltrada.filter( item => {
+      if (
+        (item.nome === transacao.nome) &&  
+        (item.anoTransacao === transacao.anoTransacao) &&  
+        (item.classificacaoTransacao === transacao.classificacaoTransacao) &&  
+        (item.diaTransacao === transacao.diaTransacao) &&  
+        (item.mesTransacao === transacao.mesTransacao) &&  
+        (item.anoTransacao === transacao.anoTransacao) &&  
+        (item.valorTransacao === transacao.valorTransacao)  
+      ){
+       
+       // console.log(item.id);
+        this.transacoesService.removeTransacaoHTTP(item.id); /// faz a request para remover do banco 
+        this.transacoesService.removeTransacaoHTTP(item.id) /// recebe o retorno e guarda em transacoes 
+          .subscribe(transacoes => {
+            this.transacoes = transacoes;
+            //this.dataSource = this.transacoes; /// preenche a tabela com todas as transações 
+          });
+        return false;
+      }
+      else 
+      {
+        return true ;
+      }
+       
+    });
+
+    // console.log(this.transacoesFiltrada);
+    // this.atualizaTabela();
+    // this.atualizaGrafico();
+   
      
-      //this.filtrar();
+     // this.filtrar();
   }
 
   atualizaTabela(){
@@ -136,9 +162,9 @@ export class GastosComponent implements OnInit {
       let value = obj[prop2]; /// value = -1000
       if (!acc[key]) { /// se nao existir , cria 
         acc[key] = [];  /// cria vazio 
-        acc[key] = value;   /// pusha o objeto inteiro da primeira vez 
+        acc[key] = parseFloat(value);   /// pusha o objeto inteiro da primeira vez 
       } else
-        acc[key] += value;   /// na segunda eu quero que ele pegue o valor existente e some com o que está vindo 
+        acc[key] += parseFloat(value);   /// na segunda eu quero que ele pegue o valor existente e some com o que está vindo 
       return acc;
     }, {});
   }

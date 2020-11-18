@@ -4,7 +4,7 @@ import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
 
 import { Transacoes } from '../model/transacoes';
 
-import { createEntitie, getEntities, removeEntities } from '../../../src/assets/db';
+// import { createEntitie, getEntities, removeEntities } from '../../../src/assets/db';
 import { catchError, delay} from 'rxjs/operators';
 
 import { environment } from '@env/environment';
@@ -42,23 +42,23 @@ export class TransacoesService {
    constructor(private httpClient: HttpClient) {}
 
 
-  getTransacoes(user: string ): Observable<Transacoes[]> {
+  // getTransacoes(user: string ): Observable<Transacoes[]> {
 
-    return of(getEntities())
-     .pipe(delay(2000)); /// se colocar o delay ele entra como undefined 
-  }
+  //   return of(getEntities())
+  //    .pipe(delay(2000)); /// se colocar o delay ele entra como undefined 
+  // }
 
-  removeTransacao(transacao): Observable<Transacoes[]> {
-    removeEntities(transacao);
-    return of(getEntities())
-     .pipe(delay(2000)); /// se colocar o delay ele entra como undefined 
-  }
+  // removeTransacao(transacao): Observable<Transacoes[]> {
+  //   removeEntities(transacao);
+  //   return of(getEntities())
+  //    .pipe(delay(2000)); /// se colocar o delay ele entra como undefined 
+  // }
 
-  createTransacao(transacao): Observable<Transacoes[]> {
-    createEntitie(transacao);
-    return of(getEntities())
-     .pipe(delay(2000)); /// se colocar o delay ele entra como undefined 
-  }
+  // createTransacao(transacao): Observable<Transacoes[]> {
+  //   createEntitie(transacao);
+  //   return of(getEntities())
+  //    .pipe(delay(2000)); /// se colocar o delay ele entra como undefined 
+  // }
 
   
 
@@ -76,6 +76,7 @@ export class TransacoesService {
     .pipe(catchError(() => of('Error, could not load users')));
   }
 
+  
   // postTransacao(transacao: Transacoes): Observable<Transacoes> {
   //   console.log(transacao);
   //   return this.httpClient.post<Transacoes>(routes.listatransacoes(), transacao);

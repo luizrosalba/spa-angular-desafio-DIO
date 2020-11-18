@@ -1,4 +1,5 @@
 export interface Transacoes {
+    id:number;
     nome: string;
     valorTransacao: number;
     diaTransacao: number;

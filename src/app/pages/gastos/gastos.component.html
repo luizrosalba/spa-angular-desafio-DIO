@@ -24,12 +24,18 @@
   </div>
   <div>
       <p class="titulo">Histórico de Gastos:</p>
-      <!-- <luiz-pie-chart> </luiz-pie-chart> -->
-      <!-- <luiz-line-chart> </luiz-line-chart> -->
-      <div *ngIf="picker">
+
+      
+        <p>Mostrar Gráfico  = {{show}}</p>
+        
+        <button (click)="show = !show">{{show ? 'Esconder' : 'Mostrar'}}</button>
+        
+        <div *ngIf="show">
           <luiz-vertical-bar-chart [single]=single> 
           </luiz-vertical-bar-chart>  
-      </div>
+        </div>
+
+
   </div>
 </div>
 
@@ -48,12 +54,7 @@
       <td mat-cell *matCellDef="let element"> {{element.nome}} </td>
     </ng-container>
   
-     <!-- Weight Column -->
-    <ng-container matColumnDef="ID">
-      <th mat-header-cell *matHeaderCellDef> ID </th>
-      <td mat-cell *matCellDef="let element"> {{element.ID}} </td>
-    </ng-container>
-  
+ 
     <!-- Symbol Column -->
     <ng-container matColumnDef="valorTransacao">
       <th mat-header-cell *matHeaderCellDef> Valor da Transação </th>
