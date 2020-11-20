@@ -1,11 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
-import { Transacoes } from '../model/transacoes';
-
-// import { createEntitie, getEntities, removeEntities } from '../../../src/assets/db';
-import { catchError, delay} from 'rxjs/operators';
+import { catchError} from 'rxjs/operators';
 
 import { environment } from '@env/environment';
 
@@ -29,6 +26,45 @@ const httpOptions = {
 
 export class TransacoesService {
   
+
+   constructor(private httpClient: HttpClient) {}
+
+
+  
+  getTransacoesHTTP() {
+      return this.httpClient.get(routes.listatransacoes())
+    .pipe(catchError(() => of('Error, could not load users')));
+  }
+
+  removeTransacaoHTTP(id: number): Observable<{}> {
+    return this.httpClient
+    .delete(routes.listatransacoes() + `/${id}`, httpOptions)
+    .pipe(catchError(() => of('Error, could not load users')));
+  }
+
+  postTransacao(transacao: any): Observable<any>  {
+    let nome = transacao['nome'];
+    let valorTransacao = transacao['valorTransacao'];
+    let diaTransacao = transacao['diaTransacao'];
+    let mesTransacao = transacao['mesTransacao'];
+    let anoTransacao = transacao['anoTransacao'];
+    let classificacaoTransacao = transacao['classificacaoTransacao'];
+
+    let body = 
+    `nome=${nome}&valorTransacao=${valorTransacao}&diaTransacao=${diaTransacao}&mesTransacao=${mesTransacao}&anoTransacao=${anoTransacao}&classificacaoTransacao=${classificacaoTransacao}`;
+   
+    //console.log(routes.listatransacoes());
+    //console.log("corpo",body);
+    return this.httpClient.post(routes.listatransacoes(), body, httpOptions)
+    .pipe(catchError(() => of('Error, could not load users')));
+  }
+
+
+
+}
+
+
+
   // private transacoesSubject = new BehaviorSubject<Transacoes[]>([]);
 
   // getTransacoesObservable$(): Observable<Transacoes[]> {
@@ -38,11 +74,9 @@ export class TransacoesService {
   // get transacoes$(): Observable<Transacoes[]> {
   //   return this.transacoesSubject.asObservable();
   // }
+// import { createEntitie, getEntities, removeEntities } from '../../../src/assets/db';
 
-   constructor(private httpClient: HttpClient) {}
-
-
-  // getTransacoes(user: string ): Observable<Transacoes[]> {
+// getTransacoes(user: string ): Observable<Transacoes[]> {
 
   //   return of(getEntities())
   //    .pipe(delay(2000)); /// se colocar o delay ele entra como undefined 
@@ -64,44 +98,9 @@ export class TransacoesService {
 
   
 
-  getTransacoesHTTP() {
-      return this.httpClient.get(routes.listatransacoes())
-    .pipe(catchError(() => of('Error, could not load users')));
-  }
 
-
-  removeTransacaoHTTP(id: number): Observable<{}> {
-    return this.httpClient
-    .delete(routes.listatransacoes() + `/${id}`, httpOptions)
-    .pipe(catchError(() => of('Error, could not load users')));
-  }
-
-  
   // postTransacao(transacao: Transacoes): Observable<Transacoes> {
   //   console.log(transacao);
   //   return this.httpClient.post<Transacoes>(routes.listatransacoes(), transacao);
   // }
 
-  postTransacao(transacao: any): Observable<any>  {
-    let nome = transacao['nome'];
-    let valorTransacao = transacao['valorTransacao'];
-    let diaTransacao = transacao['diaTransacao'];
-    let mesTransacao = transacao['mesTransacao'];
-    let anoTransacao = transacao['anoTransacao'];
-    let classificacaoTransacao = transacao['classificacaoTransacao'];
-
-    let body = 
-    `nome=${nome}&valorTransacao=${valorTransacao}&diaTransacao=${diaTransacao}&mesTransacao=${mesTransacao}&anoTransacao=${anoTransacao}&classificacaoTransacao=${classificacaoTransacao}`;
-
-
-
-   
-    console.log(routes.listatransacoes());
-    console.log("corpo",body);
-    return this.httpClient.post(routes.listatransacoes(), body, httpOptions)
-    .pipe(catchError(() => of('Error, could not load users')));
-  }
-
-
-
-}

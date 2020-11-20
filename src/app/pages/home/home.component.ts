@@ -9,9 +9,6 @@ interface Classificacao {
   viewValue: string;
 }
 
-
-
-
 @Component({
   selector: 'luiz-home',
   templateUrl: './home.component.html',
@@ -20,62 +17,36 @@ interface Classificacao {
 export class HomeComponent  {
 
   acerto = {} as Transacoes;
-
   valor=0.0; 
-  
-   
-  
-  
   constructor(private transacoesService: TransacoesService,
               private formBuilder: FormBuilder) 
   {
-    
   }
 
   public AdicionarTransacao = new FormGroup({
-
     nome: new FormControl('', [ Validators.required,]),
     valorTransacao: new FormControl('', [ Validators.required,]),
     dataTransacao: new FormControl('', [ Validators.required,]),
     classificacaoTransacao: new FormControl('', [ Validators.required,]),
   });
 
-
- 
-  classificacoes: Classificacao[] = [
-    {value: 'alimentacao', viewValue: 'Alimentação'},
-    {value: 'educacao', viewValue: 'Educação'},
-    {value: 'transporte', viewValue: 'Transporte'},
-    {value: 'salario', viewValue: 'Salário'},
-    {value: 'trabalhoextra', viewValue: 'Trabalhos Extras'},
-  ];
-  
   Varia(ent){
     this.valor+= parseFloat(ent);
     this.AdicionarTransacao.get('valorTransacao').setValue(this.valor.toFixed(2).toString());
   }
 
   onSubmit(valorSubmetido) {
-   
+
     let dia =  valorSubmetido.dataTransacao.getDate();
     let mes = valorSubmetido.dataTransacao.getMonth()+1;
     let ano= valorSubmetido.dataTransacao.getYear()+1900;
-//    var dateFrom = `${dia}/${mes}/${ano}`;
 
-    // console.log(valorSubmetido.ID);
-    // console.log(valorSubmetido.classificacaoTransacao);
-    // console.log(valorSubmetido.nome);
-    // console.log(valorSubmetido.valorTransacao);
-
-     //this.acerto.ID = parseInt(valorSubmetido.ID);
-     this.acerto.diaTransacao= dia; 
-     this.acerto.mesTransacao= mes; 
-     this.acerto.anoTransacao= ano; 
-     this.acerto.classificacaoTransacao= valorSubmetido.classificacaoTransacao; 
-     this.acerto.nome = valorSubmetido.nome; 
-     this.acerto.valorTransacao= parseFloat(valorSubmetido.valorTransacao); 
-
-    // Process checkout data here
+    this.acerto.diaTransacao= dia; 
+    this.acerto.mesTransacao= mes; 
+    this.acerto.anoTransacao= ano; 
+    this.acerto.classificacaoTransacao= valorSubmetido.classificacaoTransacao; 
+    this.acerto.nome = valorSubmetido.nome; 
+    this.acerto.valorTransacao= parseFloat(valorSubmetido.valorTransacao); 
 
     this.transacoesService.postTransacao(this.acerto).subscribe((users) => {
       this.acerto = users;
@@ -94,9 +65,27 @@ export class HomeComponent  {
     let ano= event.getYear()+1900;
     var dateFrom = `${dia}/${mes}/${ano}`;
     //console.log(dateFrom);
-
   }
 
   
 }
 
+
+
+  // classificacoes: Classificacao[] = [
+  //   {value: 'alimentacao', viewValue: 'Alimentação'},
+  //   {value: 'educacao', viewValue: 'Educação'},
+  //   {value: 'transporte', viewValue: 'Transporte'},
+  //   {value: 'salario', viewValue: 'Salário'},
+  //   {value: 'trabalhoextra', viewValue: 'Trabalhos Extras'},
+  // ];
+
+
+  //    var dateFrom = `${dia}/${mes}/${ano}`;
+
+    // console.log(valorSubmetido.ID);
+    // console.log(valorSubmetido.classificacaoTransacao);
+    // console.log(valorSubmetido.nome);
+    // console.log(valorSubmetido.valorTransacao);
+
+     //this.acerto.ID = parseInt(valorSubmetido.ID);

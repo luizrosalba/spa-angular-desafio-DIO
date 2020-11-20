@@ -2,15 +2,6 @@
   "listatransacoes": [
     {
       "nome": "Luiz",
-      "valorTransacao": "200.00",
-      "diaTransacao": "4",
-      "mesTransacao": "10",
-      "anoTransacao": "2020",
-      "classificacaoTransacao": "transporte",
-      "id": 2
-    },
-    {
-      "nome": "Luiz",
       "valorTransacao": "250.00",
       "diaTransacao": "5",
       "mesTransacao": "10",

@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+
 import { Transacoes } from 'src/app/model/transacoes';
 import { TransacoesService } from 'src/app/pages/transacoes.service';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { isNgTemplate } from '@angular/compiler';
-import { filter } from 'rxjs/operators';
-
 
 @Component({
   selector: 'luiz-gastos',
@@ -15,11 +12,18 @@ import { filter } from 'rxjs/operators';
 export class GastosComponent implements OnInit {
 
 
+displayedColumns: string[] = ['nome', 'valorTransacao',
+  'diaTransacao', 'mesTransacao', 'anoTransacao', 'classificacaoTransacao', 'actions'];
+
+transacoes: any = []; /// todas as transacoes do banco 
+transacoesFiltrada: Transacoes[]; /// transacoes na tabela 
+single = [];
+show = false;
+
   rangeFormGroup = new FormGroup({
     start: new FormControl(null, Validators.required),
     end: new FormControl(null, Validators.required)
   })
-
 
   constructor(private transacoesService: TransacoesService) { 
     this.transacoesService.getTransacoesHTTP().
@@ -28,28 +32,9 @@ export class GastosComponent implements OnInit {
     });
   }
 
-  displayedColumns: string[] = ['nome', 'valorTransacao',
-    'diaTransacao', 'mesTransacao', 'anoTransacao', 'classificacaoTransacao', 'actions'];
-
-  //dataSource: Transacoes[]; //// todas as transicoes 
-  transacoes: any = []; /// todas as transacoes do banco 
-  transacoesFiltrada: Transacoes[]; /// transacoes na tabela 
-  //transacoes$: Observable<Transacoes[]>;
-  single = [];
-  show = false;
-  //transacoes2: any = []; /// todas as transacoes do banco 
 
   ngOnInit(): void {
-    /// pego todas as minhas transacoes do dataSource e aloco em transacoes
-    // this.transacoesService.getTransacoes("Luiz"); /// faz a request 
-    // this.transacoesService.getTransacoes("Luiz")
-    //   .subscribe(transacoes => {
-    //     this.transacoes = transacoes;
-    //     //this.dataSource = this.transacoes;
-    //   });
-
-     
-     
+ 
   }
 
   Remover(transacao: Transacoes) {
@@ -218,6 +203,8 @@ export class GastosComponent implements OnInit {
     // });
 
 
+//dataSource: Transacoes[]; //// todas as transicoes 
+//transacoes$: Observable<Transacoes[]>;
 
 
 
@@ -261,3 +248,14 @@ export class GastosComponent implements OnInit {
 
     //   });
 
+
+       /// pego todas as minhas transacoes do dataSource e aloco em transacoes
+    // this.transacoesService.getTransacoes("Luiz"); /// faz a request 
+    // this.transacoesService.getTransacoes("Luiz")
+    //   .subscribe(transacoes => {
+    //     this.transacoes = transacoes;
+    //     //this.dataSource = this.transacoes;
+    //   });
+
+     
+     
